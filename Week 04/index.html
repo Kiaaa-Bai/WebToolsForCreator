@@ -10,12 +10,26 @@
     <main>
     </main>
 
-    <input id="rockInput" type="text" value="🪨" />
-    <input id="scissorsInput" type="text" value="✂️" />
-    <input id="paperInput" type="text" value="📄" />
-    <input id="countSlider" type="range" min="5" max="60" value="30" />
-    <button id="restartButton">Restart</button>
-    <button id="gifButton">Download GIF</button>
+    <div id="hud">
+      <div class="hudGroup" id="sliders">
+        <div class="sliderGroup">
+          <span>Count (each)</span>
+          <input id="countSlider" type="range" min="5" max="60" value="30" />
+          <span class="sliderValue" id="countValue">30</span>
+        </div>
+
+        <div class="sliderGroup">
+          <span>Speed</span>
+          <input id="speedSlider" type="range" min="0" max="3" step="0.1" value="1" />
+          <span class="sliderValue" id="speedValue">1×</span>
+        </div>
+      </div>
+
+      <div class="hudGroup">
+        <button id="restartButton">Restart</button>
+        <button id="gifButton">Download GIF</button>
+      </div>
+    </div>
 
     <script src="sketch.js"></script>
     <script src="tool.js"></script>

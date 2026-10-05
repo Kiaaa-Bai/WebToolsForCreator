@@ -1,38 +1,27 @@
-let rockInput = document.getElementById("rockInput");
-let scissorsInput = document.getElementById("scissorsInput");
-let paperInput = document.getElementById("paperInput");
 let countSlider = document.getElementById("countSlider");
+let countValue = document.getElementById("countValue");
+let speedSlider = document.getElementById("speedSlider");
+let speedValue = document.getElementById("speedValue");
 let restartButton = document.getElementById("restartButton");
 let gifButton = document.getElementById("gifButton");
 
-rockInput.addEventListener("change", onRockChange);
-scissorsInput.addEventListener("change", onScissorsChange);
-paperInput.addEventListener("change", onPaperChange);
-countSlider.addEventListener("change", onCountChange);
+// "input" fires the whole time the slider is being dragged
+countSlider.addEventListener("input", onCountInput);
+speedSlider.addEventListener("input", onSpeedInput);
 restartButton.addEventListener("click", onRestart);
 gifButton.addEventListener("click", onGif);
 
-function onRockChange(ev) {
-  if (rockInput.value !== "") {
-    window.emojiFor.rock = rockInput.value;
-  }
-}
-
-function onScissorsChange(ev) {
-  if (scissorsInput.value !== "") {
-    window.emojiFor.scissors = scissorsInput.value;
-  }
-}
-
-function onPaperChange(ev) {
-  if (paperInput.value !== "") {
-    window.emojiFor.paper = paperInput.value;
-  }
-}
-
-function onCountChange(ev) {
-  let sliderValue = countSlider.value;
+function onCountInput(ev) {
+  let sliderValue = Number(countSlider.value);
   window.numPerType = sliderValue;
+  countValue.textContent = sliderValue;
+  window.adjustPopulation();
+}
+
+function onSpeedInput(ev) {
+  let sliderValue = Number(speedSlider.value);
+  window.speed = sliderValue;
+  speedValue.textContent = sliderValue + "×";
 }
 
 function onRestart(ev) {

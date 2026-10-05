@@ -1,5 +1,5 @@
 window.numPerType = 30;
-window.emojiFor = { rock: "🪨", scissors: "✂️", paper: "📄" };
+window.speed = 1;
 
 let emojis = [];
 let effects = [];
@@ -24,31 +24,46 @@ function setup() {
   restartBattle();
 }
 
+// one new agent at its type's start point
+function spawnAgent(type) {
+  let x, y;
+  if (type === "rock") { x = 300; y = 100; }
+  else if (type === "scissors") { x = 150; y = 500; }
+  else if (type === "paper") { x = 450; y = 500; }
+
+  emojis.push(new EmojiAgent(x + random(-15, 15), y + random(-15, 15), type));
+}
+
 function restartBattle() {
   emojis = [];
   effects = [];
 
-  // start point
-  let rockX = 300, rockY = 100;
-  let scissorsX = 150, scissorsY = 500;
-  let paperX = 450, paperY = 500;
-
-  // rocks
   for (let i = 0; i < window.numPerType; i++) {
-    emojis.push(new EmojiAgent(rockX + random(-15, 15), rockY + random(-15, 15), "rock"));
-  }
-
-  // scissors
-  for (let i = 0; i < window.numPerType; i++) {
-    emojis.push(new EmojiAgent(scissorsX + random(-15, 15), scissorsY + random(-15, 15), "scissors"));
-  }
-
-  // papers
-  for (let i = 0; i < window.numPerType; i++) {
-    emojis.push(new EmojiAgent(paperX + random(-15, 15), paperY + random(-15, 15), "paper"));
+    spawnAgent("rock");
+    spawnAgent("scissors");
+    spawnAgent("paper");
   }
 }
 window.restartBattle = restartBattle;
+
+// called while the count slider moves: add or remove agents, keep the battle going
+function adjustPopulation() {
+  let target = window.numPerType * 3;
+  let types = ["rock", "scissors", "paper"];
+
+  // too few: add one of each type in turn at the start points
+  let i = 0;
+  while (emojis.length < target) {
+    spawnAgent(types[i % 3]);
+    i++;
+  }
+
+  // too many: remove random agents
+  while (emojis.length > target) {
+    emojis.splice(floor(random(emojis.length)), 1);
+  }
+}
+window.adjustPopulation = adjustPopulation;
 
 // sound only plays after the first click
 function mousePressed() {
@@ -114,14 +129,12 @@ function draw() {
 
   // counter
   let c = countTypes();
-  let face = window.emojiFor;
   noStroke();
   fill(0);
   textSize(16);
-  text(`${face.rock}: ${c.rock}   ${face.scissors}: ${c.scissors}   ${face.paper}: ${c.paper}`, width / 2, 25);
+  text(`🪨: ${c.rock}   ✂️: ${c.scissors}   📄: ${c.paper}`, width / 2, 25);
   textSize(22);
 }
-
 
 class EmojiAgent {
   constructor(x, y, type) {
@@ -131,8 +144,9 @@ class EmojiAgent {
     this.type = type;
   }
 
+  // speed slider scales how far everyone moves each frame
   updateMotion() {
-    this.position.add(this.velocity);
+    this.position.add(p5.Vector.mult(this.velocity, window.speed));
   }
 
   checkEdges() {
@@ -156,8 +170,9 @@ class EmojiAgent {
 
   display() {
     noStroke();
-    fill(0);
-    text(window.emojiFor[this.type], this.position.x, this.position.y);
+    if (this.type === "rock") text("🪨", this.position.x, this.position.y);
+    else if (this.type === "paper") text("📄", this.position.x, this.position.y);
+    else if (this.type === "scissors") text("✂️", this.position.x, this.position.y);
   }
 }
 

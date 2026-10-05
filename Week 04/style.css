@@ -2,6 +2,76 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/* the whole page is one column: stage on top, HUD bar at the bottom */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* the stage takes all the space left over and centers the canvas */
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 canvas {
   display: block;
+}
+
+/* the HUD bar: sliders on the left, buttons on the right */
+#hud {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-top: 1px solid black;
+}
+
+.hudGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hudGroup button {
+  margin: 0 5px;
+}
+
+/* one label + slider + number */
+.sliderGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.sliderGroup input,
+.sliderGroup span {
+  margin: 0 5px;
+}
+
+/* fixed width so the bar doesn't jump when the number changes */
+.sliderValue {
+  width: 30px;
+}
+
+/* small screens: stack everything */
+@media (max-width: 700px) {
+  #hud {
+    flex-direction: column;
+  }
+
+  #sliders {
+    flex-direction: column;
+  }
+
+  .hudGroup,
+  .sliderGroup {
+    margin: 5px 0;
+  }
 }
