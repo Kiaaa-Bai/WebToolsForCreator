@@ -64,15 +64,6 @@ being cut off.
 - The parts with logic (reading timestamps out of comments, the timeline, choosing a lane so comments
   don't overlap) have unit tests.
 
-## What I learned from building it
-
-- The cold start problem is real. Without the YouTube comments, every video I opened was empty, and an
-  empty bullet comment tool feels broken rather than quiet.
-- Tutorials with many short remarks ("at 1:06 my purple is different from yours") feel the most like
-  Bilibili. Long courses mostly have chapter lists, which read more like subtitles than conversation.
-- YouTube is a single-page app, so the extension has to notice when you move to another video without a
-  page load, and ads play in the same video element as the video itself.
-
 ## Next
 
 - Moderation (reporting, hiding spam) before more people use it.
@@ -83,7 +74,7 @@ being cut off.
 
 I built this with Claude Code (Anthropic, model Claude Opus 5.5) on October 26, 2026.
 
-**Prompt** (my requests during the session, translated from Chinese and condensed):
+**Prompt**:
 
 > Build a Chrome extension for my Web Tools midterm, which is due tomorrow: Bilibili-style bullet
 > comments on YouTube, for people learning from coding tutorials. It has two features. First, I type a
@@ -93,15 +84,4 @@ I built this with Claude Code (Anthropic, model Claude Opus 5.5) on October 26, 
 > comments. Use the tools and practices that are standard in the industry, not only what we covered in
 > class. Also research GitHub projects and articles on how danmaku work. Then add Bilibili's controls:
 > font size, speed, density, display area, top and bottom comments, and colour. Don't store YouTube
-> comments; store only what people send through the extension. The interface is for an English-speaking
-> audience, so no Chinese text.
-
-**How I used it.** I decided what the tool is for and what it does: the two features, Firebase, not
-storing YouTube comments, which settings to copy from Bilibili, which demo videos to use, and every
-interface change, which I asked for by sending screenshots of the running extension (the icon is too
-big, the number should sit next to the icon, no timestamp in the placeholder, say "bullet comment"
-instead of "danmu"). Claude Code wrote the design document, the plan, the code and the unit tests, set up
-the Firebase project, searched for related projects such as weizhenye/Danmaku and Danmaku Anywhere, ran
-a separate AI code review, and checked each change in my browser before I looked at it. I used AI here
-because the point of this midterm for me was to design the tool and watch people use it, and it let me
-get to a version people can actually try. I kept the full chat log and can share it.
+> comments; store only what people send through the extension.
