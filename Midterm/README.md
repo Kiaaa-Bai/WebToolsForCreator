@@ -8,6 +8,12 @@ video at the exact second they were written.
 - Code: [github.com/Kiaaa-Bai/Danmu](https://github.com/Kiaaa-Bai/Danmu)
 - Idea presentation (Week 6): [Kia Bai - Web Tools Midterm Idea](https://docs.google.com/presentation/d/14B4YIsfiu5nRQ12l6akN2wWIW0IR-ISXPo81UllQrxc)
 
+## Demo video
+
+[![Demo video: bullet comments flying over the video, sending one, and the settings panel](images/demo-thumbnail.jpg)](demo.mp4)
+
+[Watch the demo (1 min, mp4)](demo.mp4)
+
 ## Who
 
 Me. I learn a lot from YouTube coding tutorials, and before that I learned the same way on Bilibili.
