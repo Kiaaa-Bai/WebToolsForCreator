@@ -6,6 +6,8 @@ video at the exact second they were written.
 ![Bullet comments flying over "Animation vs. Coding", with the input bar under the player](images/player-and-bar.jpg)
 
 - Idea presentation (Week 6): [Kia Bai - Web Tools Midterm Idea](https://docs.google.com/presentation/d/14B4YIsfiu5nRQ12l6akN2wWIW0IR-ISXPo81UllQrxc)
+- Code: [github.com/Kiaaa-Bai/Danmu](https://github.com/Kiaaa-Bai/Danmu)
+- User testing (Week 8): [video and notes](#user-testing-week-8)
 
 ## Demo video
 
@@ -38,7 +40,7 @@ point out mistakes and add missing information right where it matters ("p5.js 2.
 ![At 5:58 the comment "data types and variables" flies as the video reaches that chapter](images/comment-at-5-58.jpg)
 
 3. **Bilibili-style controls.** Turn comments on and off (the button shows how many there are), pick a
-   colour and Scroll / Top / Bottom for your own comments, and change opacity, display area, speed, font
+   colour and Normal / Top / Bottom for your own comments, and change opacity, display area, speed, font
    size and density for what you see. In fullscreen the input bar floats above YouTube's controls.
 
 ![The input bar: on/off with the count, colour and position, input, Send, settings](images/bar.png)
@@ -64,15 +66,48 @@ being cut off.
 - The parts with logic (reading timestamps out of comments, the timeline, choosing a lane so comments
   don't overlap) have unit tests.
 
+## User testing (Week 8)
+
+[![A classmate trying the extension on "Animation vs. Coding" during the round robin](images/user-testing-thumbnail.jpg)](user-testing.mp4)
+
+[Watch a classmate use it (2:42, mp4, no sound)](user-testing.mp4)
+
+### What I expected and what happened
+
+1. **Area (1/4, 1/2, 3/4, Full).** I expected the fractions to read as "how much of the player bullet
+   comments may use". Many people didn't know what they meant, and because most videos don't have many
+   bullet comments yet, changing the setting made no visible difference.
+2. **Mode (Scroll, Top, Bottom).** People didn't know what the three words meant.
+3. **On/off button.** Clicking the bubble hides all bullet comments and clicking again shows them. When
+   they were off, the icon barely changed, so people didn't realise they had turned comments off and
+   never turned them back on.
+4. **Posting to YouTube as well.** Many people wanted each bullet comment to also leave a normal YouTube
+   comment with the current timestamp and the same text.
+
+### What I changed (November 2)
+
+1. Area is now four small pictures of the player, with the top quarter, half, three quarters or all of
+   it filled in. The words show on hover.
+2. Scroll is now called Normal, and each mode has a picture: an arrow flying right to left, a bar
+   pinned to the top, a bar pinned to the bottom.
+3. When comments are off, the button says "Off" instead of the count, and the bubble is crossed out.
+
 ## Next
 
+- Posting to YouTube as well (from user testing). One way is the YouTube Data API: each person signs in
+  with Google, every comment costs 50 of the default 10,000 daily quota units (about 200 comments a day
+  for everyone together), and Google has to review the app before more than 100 people can use it. The
+  lighter way is to fill YouTube's own comment box with "5:58 text" and let the person press Comment:
+  no sign-in, but it breaks whenever YouTube changes its page. Either way the new comment has a
+  timestamp, so the extension would read it back and fly it twice unless it removes duplicates.
 - Moderation (reporting, hiding spam) before more people use it.
 - A way to vote a correction up so it stands out from chatter.
 - Publishing to the Chrome Web Store, which needs a privacy policy and a review.
 
 ## AI use
 
-I built this with Claude Code (Anthropic, model Claude Opus 5.5) on October 26, 2026.
+I built this with Claude Code (Anthropic, model Claude Opus 5.5) on October 26, 2026. The three
+user-testing changes on November 2 were also made with Claude Code.
 
 **Prompt**:
 
