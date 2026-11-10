@@ -6,5 +6,3 @@ document.body.addEventListener('mousemove', (ev) => {
     mySquare.style.left = clientX - 50 + "px"
 
 })
-
-document.body.addEventListener()
